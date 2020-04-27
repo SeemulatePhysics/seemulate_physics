@@ -28,10 +28,10 @@ K2=v_nd*t_nd/r_nd
 #Define masses
 m1=1.1 #Alpha Centauri A
 m2=0.907 #Alpha Centauri B
-m3=0.9 #Third Star
+m3=0.9 #Third Star, this mass is taken larger then the real one to have a nicer evolution
 
 #It is like saying that stars have the same densities 
-# so the volume of the marker inn the plot is proportional to its mass
+# so the volume of the marker in the plot is proportional to its mass
 sizes = [5*m1, 5*m2, 5*m3]
 
 #Define initial position vectors
