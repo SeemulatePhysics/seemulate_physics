@@ -201,8 +201,7 @@ def animate(i, data, lines, pts):
     return  lines + pts  #, time_text (Attempt to update a text object in each frame)
 
 """
-ANIMATION FUNCTION
-   
+ANIMATION FUNCTION  
    Update the data held by the scatter plot and therefore animates it.
    Args:
        iteration (int): Current iteration of the animation
@@ -215,7 +214,10 @@ ANIMATION FUNCTION
 ani = animation.FuncAnimation(fig, animate, frames= 1000000,
                                blit=True, fargs = (data, lines, pts), repeat=False, interval = 0.1)#, init_func=init)
 
-#To use the line below you need to install imagemagick
+# Interval is the time between 2 consecutive frames in ms
+# 3th argument is the number of frames
+
+#To use the line below you need to install imagemagick. There are other writers aviable
 #ani.save('C:\\Users\\Salvo\\Desktop\\animation2.gif', writer='imagemagick', fps=60)
 plt.show()
 
