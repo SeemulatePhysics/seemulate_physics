@@ -1,3 +1,8 @@
+"""
+3 Body System with 3D animation. It represents the evolution of the Centauri binary system and its third less heavy star,
+under the pull of Newtonian gravity. 
+"""
+
 import scipy as sci
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -76,7 +81,8 @@ def ThreeBodyEquations(w,t,G,m1,m2,m3):
     eq4=K2*v1
     eq5=K2*v2
     eq6=K2*v3
-
+    
+    #numpy concatenate should work too
     r12_derivs=sci.concatenate((eq4,eq5))
     r_derivs=sci.concatenate((r12_derivs,eq6))
     v12_derivs=sci.concatenate((eq1,eq2))
@@ -87,11 +93,12 @@ def ThreeBodyEquations(w,t,G,m1,m2,m3):
     return derivs
 
 #Package initial parameters
+
+#numpy array and linespace should work too
 init_params=sci.array([r1,r2,r3,v1,v2,v3]) #Initial parameters
 init_params=init_params.flatten() #Flatten to make 1D array
 
-time_span=sci.linspace(0,35,3500) #35 orbital periods and 3500 points 
-#the ratio between the two set the velocity of the simulation
+time_span=sci.linspace(0,35,3500) #35 orbital periods and 3500 points the ratio between the two set the velocity of the simulation
 
 #Run the ODE solver
 sol = sci.integrate.odeint(ThreeBodyEquations,init_params,time_span,args=(G,m1,m2,m3))
@@ -170,6 +177,8 @@ def animate(i, data, lines, pts):
         
         # nOTE: there is no .set_data() for 3 dim data...
         # set_3d_properties is the update of z axis
+        
+        #track setting, it takes last 150 positions
         if i > 150 :
             line.set_data(data[0:2, i-150:i])
             line.set_3d_properties(data[2, i-150:i])
@@ -177,7 +186,6 @@ def animate(i, data, lines, pts):
             line.set_data(data[0:2, :i])
             line.set_3d_properties(data[2, :i])
         
-
         pt.set_data(data[0:2, i-2])
         pt.set_3d_properties(data[2, i-2])
 
